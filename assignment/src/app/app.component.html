@@ -1,0 +1,49 @@
+<div class="filter-form">
+    <form [formGroup]="filterForm" autocomplete="off">
+            <ng-container formArrayName="filters">
+                <div class="filter-form_items" *ngFor="let ctrl of getFilterControls(); let i = index" [formGroupName]="i">
+                    <mat-form-field>
+                        <mat-label>Select Filter</mat-label>
+                        <mat-select formControlName="filterType">
+                            <mat-option *ngFor="let filterType of filterTypes" [value]="filterType">{{ filterType }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formFiltersArray.controls[i].get('filterType').hasError('required')">
+                            Please select a value
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Select API</mat-label>
+                        <mat-select formControlName="apiType">
+                            <mat-option *ngFor="let apiType of apiTypes" [value]="apiType">{{ apiType }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formFiltersArray.controls[i].get('apiType').hasError('required')">
+                            Please select a value
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="mt1">
+                        <input matInput formControlName="value">
+                            <mat-error *ngIf="formFiltersArray.controls[i].get('value').hasError('required')">
+                                Please enter a value
+                            </mat-error>
+                    </mat-form-field>
+                    <button mat-icon-button class="delete-btn" (click)="deleteFilter(i)" [disabled]="i !=0 && formFiltersArray.length == i+1">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </ng-container>
+    </form>
+    <div class="action-btns">
+        <button type="button"
+                mat-raised-button
+                color="primary"
+                (click)="addFilterToFiltersFormArray()">Add Filter</button>
+        <button type="button"
+                mat-stroked-button
+                color="primary"
+                class="save-btn"
+                *ngIf="getFilterControls().length>0"
+                (click)="onFilterSave()"
+                [disabled]="!getValidity">Save</button>
+    </div>
+</div>
+

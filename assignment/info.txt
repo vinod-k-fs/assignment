@@ -1,0 +1,11 @@
+Its a simple assignment
+
+You need to complete following task:
+
+1. Create add more functionality for filter and all filed is required.
+2. Add delete function for filter and user can't delete last filter.
+3. On save button show result in array with all filter values.
+
+Take the reference from image that you can find out inside assignment with name expected-view.png
+
+
