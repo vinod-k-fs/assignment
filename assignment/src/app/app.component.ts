@@ -53,7 +53,6 @@ export class AppComponent implements  OnInit{
     return this.formFiltersArray.controls.every(control => control.valid);
   }
   deleteFilter(index) {
-    debugger;
     this.formFiltersArray.removeAt(index);
   }
 
